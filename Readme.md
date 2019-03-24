@@ -11,3 +11,15 @@ Execute the following command from the program folder
 node .
 ```
 
+
+### App flow
+    read clientId/secret from file
+    
+    googleAuth
+        generateOAuthClient
+            getAccessToken
+    
+    calendarService
+        calendar
+        getEvents
+        
