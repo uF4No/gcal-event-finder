@@ -1,14 +1,16 @@
 
 const {google} = require('googleapis');
 
-const debug = require('debug')('calendar:service')
+const debug = require('debug')('gcal:calendarService')
 
 
-async function getEvents(oAuthClient, filter){
+async function getEvents(oAuth2Client, filter){
   try{
+    google.options({auth: oAuth2Client});
+
     const calendar = google.calendar({
       version: 'v3',
-      auth: oAuthClient
+      auth: oAuth2Client
     })
     const filterBy = {
       calendarId: 'primary',
@@ -20,9 +22,10 @@ async function getEvents(oAuthClient, filter){
     }
     debug('Searching with filter %j', filterBy)
     const events = await calendar.events.list(filterBy)
-    debug('found %s events', events.length)
+    debug('found events: ', events)
     return events
   }catch(err){
+    debug('Captured error in getEvents: %s', err)
     console.log(err)
   }
   
