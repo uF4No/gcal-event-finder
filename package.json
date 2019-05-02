@@ -1,6 +1,6 @@
 {
   "name": "gcal-event-finder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This program takes a range of dates and keywords to search events in your calendar.",
   "main": "index.js",
   "bin": {
