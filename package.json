@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This program takes a range of dates and keywords to search events in your calendar.",
   "main": "index.js",
+  "bin": {
+    "gcal-event-finder": "./index.js"
+  },
   "scripts": {
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"

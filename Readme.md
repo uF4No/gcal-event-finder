@@ -1,25 +1,19 @@
 # GCal Event finder
-This program takes a range of dates and keywords to search events in your calendar.
+This is a command line program to search and extract events from yout Google calendar. Yu can enter a range of dates, keywords and limit the number of results.
 
 ### Requirements
-Node.js
+
+Node.js and NPM installed - Visit nodejs.org to install it.
 A Google account - You'll be asked to login in the first execution.
 
+### Installation guide
+Open a terminal and run
+```
+sudo npm i -g gcal-event-finder
+```
+
 ### How to run
-Execute the following command from the program folder
+Execute the following command
 ```
-node .
+gcal-event-finder
 ```
-
-
-### App flow
-    read clientId/secret from file
-    
-    googleAuth
-        generateOAuthClient
-            getAccessToken
-    
-    calendarService
-        calendar
-        getEvents
-        

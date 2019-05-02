@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 const calendarService = require('./src/calendarService')
 const googleAuth = require('./src/googleAuth')
