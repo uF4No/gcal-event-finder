@@ -20,19 +20,19 @@ const TOKEN_PATH = 'token.json';
 async function generateOAuthClient(keysObj, scopes){
   let oAuth2Client
   try{
-    const {clientSecret, clientId, redirect_uris} = keysObj
+    const {client_secret, client_id, redirect_uris} = keysObj.installed
     debug('Secrets read')
     // create oAuthClient using clientId and Secret
-    oAuth2Client = new google.auth.OAuth2(clientId, clientSecret, redirect_uris[0])
+    oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0])
     google.options({auth: oAuth2Client});
 
     // check if we have a valid token
     const tokenFile = fs.readFileSync(TOKEN_PATH)
     if(tokenFile !== undefined && tokenFile !== {}){
-      debug('Token already exists and is not empty')
+      debug('Token already exists and is not empty %s', tokenFile)
 
-      //oAuth2Client.setCredentials(JSON.parse(tokenFile.tokens))
-      oAuth2Client.credentials = JSON.parse(tokenFile)
+      oAuth2Client.setCredentials(JSON.parse(tokenFile))
+      //oAuth2Client.credentials = JSON.parse(tokenFile)
     }else{
       debug('Token is empty!')
       throw new Error('Empty token')
@@ -74,47 +74,12 @@ async function getAccessToken(oAuth2Client, scopes) {
   debug('Token received from Google :)')
   // save token in oAuth2Client
   //oAuth2Client.setCredentials(token) 
-  oAuth2Client.credentials = token 
+  oAuth2Client.credentials = token.res
   // save token in disk
-  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token))
+  fs.writeFileSync(TOKEN_PATH, JSON.stringify(token.res.data))
 
   return Promise.resolve(oAuth2Client)
   
-  
-  // const rl = readline.createInterface({
-  //   input: process.stdin,
-  //   output: process.stdout,
-  // });
-
-  // ask for auth code
-  
-  // rl.question('Enter the code from that page here: ')
-  // //rl.close()
-  // // get new token in exchange of the auth code
-  // const token = oAuth2Client.getToken(code)
-  // // save token in oAuth2Client
-  // oAuth2Client.setCredentials(token) 
-  // // save token in disk
-  // fs.writeFileSync(TOKEN_PATH, JSON.stringify(token))
-
-  //return Promise.resolve(oAuth2Client)
-
-
-  // // ask for auth code
-  // rl.question('Enter the code from that page here: ', (code) => {
-  //   rl.close();
-  //     //get new token in exchange of the auth code
-  //   oAuth2Client.getToken(code, (err, token) => {
-  //     if (err) return console.error('Error retrieving access token', err);
-  //     oAuth2Client.setCredentials(token);
-  //     // Store the token to disk for later program executions
-  //     fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-  //       if (err) console.error(err);
-  //       console.log('Token stored to', TOKEN_PATH);
-  //     });
-  //     return Promise.resolve(oAuth2Client);
-  //   });
-  // });
 }
 
 

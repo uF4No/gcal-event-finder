@@ -4,19 +4,19 @@ const {google} = require('googleapis');
 const debug = require('debug')('gcal:calendarService')
 
 
-async function getEvents(oAuth2Client, filter){
+async function getEvents(auth, filter){
   try{
-    google.options({auth: oAuth2Client});
+    //google.options({auth: oAuth2Client});
 
     const calendar = google.calendar({
       version: 'v3',
-      auth: oAuth2Client
+      auth
     })
     const filterBy = {
       calendarId: 'primary',
       timeMin: (new Date(filter.timeMin).toISOString()) || (new Date('2014-01-01')).toISOString(),
       timeMax: (new Date(filter.timeMax).toISOString())  || (new Date()).toISOString(),
-      maxResults: 999,
+      maxResults: filter.maxResults ,
       singleEvents: true,
       orderBy: 'startTime',
     }

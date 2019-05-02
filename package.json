@@ -4,12 +4,12 @@
   "description": "This program takes a range of dates and keywords to search events in your calendar.",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "A.Ufano",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.19.0",
     "debug": "^4.1.1",
     "figlet": "^1.2.1",
     "googleapis": "^38.0.0",
