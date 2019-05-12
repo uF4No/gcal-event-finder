@@ -1,8 +1,9 @@
 credentials.json
 events.json
-token.json
+token*
+results*
 node_modules
 old
-keys
+keys/secrets_save.json
 .vscode
 
