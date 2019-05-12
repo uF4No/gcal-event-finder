@@ -1,7 +1,7 @@
 # GCal Event finder
 This is a command line program to search and extract events from yout Google calendar. You can enter a range of dates, keyword and limit the number of results. Results are written in files results.json and results_raw.json
 
-__A step-by-step guide to this project can be found [in this article in my blog](http://uf4no.com/articles/understanding-oauth2-authentication-to-use-google-apis-38)__
+__A step-by-step guide to this project can be found [in this article in my blog](https://uf4no.com/articles/understanding-oauth2-authentication-to-use-google-apis-38)__
 
 ## Requirements
 
